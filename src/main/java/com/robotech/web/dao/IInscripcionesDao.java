@@ -24,6 +24,8 @@ public interface IInscripcionesDao extends JpaRepository<Inscripciones, Integer>
 	
 	@Query("SELECT COUNT(i) FROM Inscripciones i WHERE i.torneoId.id = :torneoId AND i.usuarioId.id IN " +
 	           "(SELECT m.usuarioId.id FROM Membresia_club m WHERE m.clubId.id = :clubId)")
-	    long countByTorneoAndClub(@Param("torneoId") Integer torneoId, @Param("clubId") Integer clubId);
+	    int countByTorneoAndClub(@Param("torneoId") Integer torneoId, @Param("clubId") Integer clubId);
     
+	@Query("SELECT COUNT(i) FROM Inscripciones i WHERE i.torneoId.id = :torneoId")
+    int countByTorneoId(@Param("torneoId") Integer torneoId);
 }

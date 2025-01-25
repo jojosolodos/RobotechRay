@@ -99,6 +99,9 @@ public class HomeController {
 			@RequestParam(value = "inscripcionExitosa", required = false) String inscripcionExitosa) {
 		Usuario usuarioSesion = (Usuario) session.getAttribute("usuario");
 		Torneo torneoDet = torneoService.listarID(id);
+		
+		List<Inscripciones> inscripciones = inscripcionesService.obtenerPorTorneo(id, 2);
+		model.addAttribute("inscripciones", inscripciones);
 
 		if (usuarioSesion == null) {
 			model.addAttribute("mensajeCuenta", "Debe tener una cuenta registrada con nosotros.");
@@ -136,7 +139,11 @@ public class HomeController {
 								model.addAttribute("mensajeClub",
 										"Tu club ya tiene 3 participantes inscritos en este torneo.");
 							} else {
-								model.addAttribute("mostrarBotonInscripcion", true);
+								if(inscripciones.size() >= torneoDet.getJugReq()){
+									model.addAttribute("mensajeClub","Este torneo ya alcanzo el limite de participantes.");
+								}else {
+									model.addAttribute("mostrarBotonInscripcion", true);
+								}
 							}
 						}
 					}
@@ -148,8 +155,7 @@ public class HomeController {
 			model.addAttribute("inscripcionExitosa", true);
 		}
 
-		List<Inscripciones> inscripciones = inscripcionesService.obtenerPorTorneo(id, 2);
-		model.addAttribute("inscripciones", inscripciones);
+		
 
 		model.addAttribute("torneoDet", torneoDet);
 		return "home/torneoDetalles";
@@ -163,6 +169,13 @@ public class HomeController {
 			ra.addFlashAttribute("error", "Debe iniciar sesión para inscribirse en un torneo.");
 			return "redirect:/login";
 		}
+		
+		// Obtener el torneo
+	    Torneo torneo = torneoService.listarID(id);
+	    if (torneo == null) {
+	        ra.addFlashAttribute("error", "El torneo no existe.");
+	        return "redirect:/home/torneos";
+	    }
 
 		// Verificar si el usuario tiene una membresía activa
 		Membresia_club membresia = membresiaClubService.obtenerPorUsuario(usuarioSesion.getId());
@@ -190,14 +203,20 @@ public class HomeController {
 
 		boolean yaInscrito = inscripcionesService.existeInscripcion(usuarioSesion.getId(), id);
 		if (yaInscrito) {
-			ra.addFlashAttribute("error", "Ya estas inscripto en este torneo.");
+			ra.addFlashAttribute("error", "Ya estas inscrito en este torneo.");
 			return "redirect:/home/torneos" + id;
+		}
+		
+		// Verificar si el número de inscripciones ya alcanzó el límite del torneo
+		int inscritos = inscripcionesService.contarInscripcionesPorTorneo(clubId);
+		if(inscritos >= torneo.getJugReq()) {
+			ra.addFlashAttribute("error", "El torneo ya alcanzo el limite de jugadores permitidos.");
+			return "redirect:home/torneos/" + id;
 		}
 
 		try {
 
 			// Obtener la categoría del torneo
-			Torneo torneo = torneoService.listarID(id);
 			int categoriaUsuario = usuarioSesion.getCategoriaId().getId();
 			int categoriaTorneo = torneo.getCategoriaId().getId();
 

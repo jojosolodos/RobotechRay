@@ -79,9 +79,16 @@ public class InscripcionesService {
 	
 	// Verificar si un club puede inscribir más participantes en un torneo
     public boolean puedeInscribirMasParticipantes(Integer torneoId, Integer clubId) {
-        long inscritos = inscripcionesDao.countByTorneoAndClub(torneoId, clubId);
+        int inscritos = inscripcionesDao.countByTorneoAndClub(torneoId, clubId);
         return inscritos < 3; // Permitir solo si hay menos de 3 inscritos
     }
+    
+    //contador de limite de usuarios
+    public int contarInscripcionesPorTorneo(Integer torneoId) {
+        return inscripcionesDao.countByTorneoId(torneoId);
+    }
+    
+    
 
 
 }
