@@ -72,7 +72,7 @@ public class AdminController {
 		        model.addAttribute("currentPage", 0);
 		        model.addAttribute("totalPages", 0);
 		        model.addAttribute("size", size);
-		        model.addAttribute("noUsersMessage", "No hay usuarios desaprobados para mostrar.");
+		        model.addAttribute("noUsersMessage", "No hay usuarios aprobados para mostrar.");
 		    } else {
 		        model.addAttribute("usuarios", usuariosAprobados.getContent());
 		        model.addAttribute("currentPage", page);
@@ -140,7 +140,7 @@ public class AdminController {
 	        model.addAttribute("currentPage", 0);
 	        model.addAttribute("totalPages", 0);
 	        model.addAttribute("size", size);
-	        model.addAttribute("noUsersMessage", "No hay usuarios desaprobados para mostrar.");
+	        model.addAttribute("noUsersMessage", "No hay usuarios en espera para mostrar.");
 	    } else {
 	        model.addAttribute("usuarios", usuarioEnEspera.getContent());
 	        model.addAttribute("currentPage", page);
