@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>ROBOTECH - Clubes Información</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+	<link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>>
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Teko:wght@300..700&display=swap');
+
+		/* Estilo para el borde verde de la alerta */
+		.custom-success-alert {
+			border: 3px solid #28a745 !important;
+			/* Borde verde */
+			border-radius: 10px;
+			/* Bordes redondeados */
+			padding: 20px;
+			/* Espaciado interno */
+			box-shadow: 0 0 10px rgba(40, 167, 69, 0.5);
+		}
+
+		/* Estilo para el botón verde */
+		.custom-green-button {
+			background-color: #28a745 !important;
+			/* Fondo verde */
+			color: #fff !important;
+			/* Texto blanco */
+			border: none !important;
+			/* Sin bordes */
+			border-radius: 5px;
+			/* Bordes redondeados */
+			padding: 10px 20px;
+			/* Tamaño del botón */
+			font-size: 16px;
+			/* Tamaño de la fuente */
+			cursor: pointer;
+			/* Cambiar cursor al pasar sobre el botón */
+		}
+
+		.custom-green-button:hover {
+			background-color: #218838 !important;
+			/* Color más oscuro al pasar el mouse */
+		}
+
+		.custom-green-button:focus {
+			outline: none !important;
+			box-shadow: none !important;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="div-bienvenida div-bienvenida-torneo-detalle">
+		<div class="menu container">
+			<a class="nav-link" th:href="@{/home}">Inicio</a>
+			<a class="nav-link" th:href="@{/home/torneos}" style="border-bottom: 2px solid #BD0507;">Torneos</a>
+			<a class="nav-link" th:href="@{/home/clubes}">Clubes</a>
+			<a class="nav-link" th:href="@{/home/clasificacion}">Clasificación</a>
+			<img src="/images/logo_robotech.png" width="150px" height="150px">
+			<a class="nav-link" th:href="@{/home/comunidad}">Comunidad</a>
+			<li class="inicio-sesion">
+				<span th:if="${session.usuario == null}">
+					<a id="loginLink" class="nav-link" th:href="@{/login}">Iniciar Sesión</a>
+				</span>
+				<span th:unless="${session.usuario == null}" class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+						aria-expanded="false">
+						<span th:text="'Hola, ' + ${session.usuario.username}" style="text-decoration: none;"></span>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+							<a th:href="@{/home/perfil}" class="dropdown-item">Ver perfil</a>
+						</li>
+						<li>
+							<form th:action="@{/logout}" method="post">
+								<button class="dropdown-item">Cerrar Sesión</button>
+							</form>
+						</li>
+
+					</ul>
+				</span>
+			</li>
+		</div>
+		<div class="container py-3">
+			<div class="row py-5">
+				<div class="card prod-id mb-3 mx-auto p-3 div-detalle-torneo "
+					style="max-width: 723px; height: 407px; border-radius: 10px; ">
+					<div class="row g-0" style="height: 100%;">
+						<!-- Imagen -->
+						<div class="col-md-4 div-img-detalle-torneo d-flex align-items-center justify-content-center">
+							<img th:src="@{'/images/'}+${torneoDet.img}" width="200px" height="200px"
+								style="border-radius: 50%; object-fit: cover;" alt="...">
+						</div>
+						<!-- Datos -->
+						<div class="col-md-8 div-datos-dellate-torneo p-4">
+							<div class="d-flex justify-content-between align-items-center mb-3">
+								<h2 th:text="${torneoDet.nombre}"
+									style="font-size: 1.8rem; font-weight: 700; margin: 0;"></h2>
+
+							</div>
+							<p th:text="${torneoDet.descripcion}"
+								style="font-size: 1rem; color: #aaa; margin-bottom: 1rem;"></p>
+							<ul style="list-style: none; padding: 0; font-size: 0.95rem; line-height: 1.6;">
+								<li>Lugar de la Batalla: <strong style="margin-left: 3px;"
+										th:text="${torneoDet.centro}"></strong></li>
+								<li>Hora de inicio: <strong style="margin-left: 3px;"
+										th:text="${torneoDet.fecha}"></strong></li>
+								<li>Categoría del Torneo: <strong style="margin-left: 3px;"
+										th:text="${torneoDet.categoriaId.nombre}"></strong>
+								</li>
+								<li>Estado del Torneo: <strong id="estado-torneo"
+										th:text="${torneoDet.estadoTorneoId.nombre}" style="margin-left: 3px;"></strong>
+								</li>
+							</ul>
+							<p style="font-weight: 700; margin-top: 1rem;">¿Deseas participar de esta gran competencia?
+							</p>
+							<div class="requisitos">
+								<h6>Requisitos para participar: </h6>
+								<!-- Mostrar mensaje si la categoría no coincide -->
+								<div th:if="${mensajeCategoria != null}">
+									<p class="text-danger" th:text="${mensajeCategoria}"></p>
+								</div>
+
+								<!-- Mostrar mensaje de cuenta, si aplica -->
+								<div th:if="${mensajeCuenta != null}">
+									<p class="text-danger" th:text="${mensajeCuenta}"></p>
+								</div>
+
+								<!-- Mostrar mensaje de membresía, si aplica -->
+								<div th:if="${mensajeMembresia != null}">
+									<p class="text-danger" th:text="${mensajeMembresia}"></p>
+								</div>
+
+								<!-- Mostrar mensaje si el usuario está inscrito en otro torneo -->
+								<div th:if="${mensajeOtroTorneo != null}">
+									<p class="text-danger" th:text="${mensajeOtroTorneo}"></p>
+								</div>
+
+								<!-- Mostrar mensaje si el usuario ya está inscrito -->
+								<div th:if="${yaInscrito}">
+									<p class="text-success">Ya estás inscrito en este torneo.</p>
+								</div>
+
+								<!-- Mensaje si el club alcanzó el límite -->
+								<div>
+									<p th:if="${mensajeClub}" class="alert alert-danger" th:text="${mensajeClub}"></p>
+								</div>
+
+								<!-- Mostrar botón de inscripción, si está permitido -->
+								<div th:if="${mostrarBotonInscripcion}">
+									<form th:action="@{'/home/torneos/'+ ${torneoDet.id} + '/inscribirse'}"
+										method="post">
+										<button type="submit" class="btn btn-primary">Inscribirse al Torneo</button>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<div class="div-jugadores ">
+			<h1 class="text-center py-3 ">Jugadores inscritos</h1>
+			<div class="row row-cols-1 row-cols-md-4 g-4 " th:if="${inscripciones != null}">
+				<div class="card-group" th:each="ins : ${inscripciones}">
+					<div class="card card-jugadores">
+						<img th:src="@{'/images/'}+${ins.usuarioId.foto_robot}" width="355px" height="350px" class=""
+							alt="...">
+						<div class="card-body card-texto">
+							<h5 class="card-title" th:text="${ins.usuarioId.nombre}"></h5>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Mostrar el mensaje si la lista está vacía o es null -->
+			<div th:if="${inscripciones == null or inscripciones.isEmpty()}" class="div-sinjugadores container"
+				role="alert">
+				No hay jugadores inscritos.
+			</div>
+		</div>
+		<script th:if="${inscripcionExitosa}">
+			Swal.fire({
+				title: '¡Inscripción exitosa!',
+				text: 'Te has inscrito correctamente al torneo.',
+				icon: 'success',
+				confirmButtonText: 'Aceptar'
+			});
+		</script>
+
+		<script>
+			document.addEventListener("DOMContentLoaded", function () {
+				const estadoElemento = document.getElementById("estado-torneo");
+				if (estadoElemento) {
+					const estado = estadoElemento.textContent.trim();
+					if (estado === "Abierto") {
+						estadoElemento.style.color = "green";
+					} else if (estado === "Cerrado") {
+						estadoElemento.style.color = "red";
+					}
+				}
+			});
+		</script>
+
+
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+			crossorigin="anonymous"></script>
+		<!-- Script para el boton de inicio de sesion-->
+		<script>
+			// Selecciona el elemento <a> usando su ID o clase
+			const loginLink = document.getElementById("loginLink");
+
+			// Verifica si el elemento <a> contiene un <span> dentro
+			if (loginLink.querySelector("span")) {
+				// Si hay un <span>, elimina todos los estilos del enlace
+				loginLink.style.backgroundColor = "";
+				loginLink.style.padding = "";
+				loginLink.style.borderRadius = "";
+				loginLink.style.color = "";
+				loginLink.style.textDecoration = "";
+			} else {
+				// Si no hay <span>, aplica los estilos
+				loginLink.style.backgroundColor = "#BD0507";
+				loginLink.style.padding = "10px 15px";
+				loginLink.style.borderRadius = "5px";
+				loginLink.style.color = "white"; // Asegura que el texto sea legible
+				loginLink.style.textDecoration = "none"; // Quita el subrayado
+			}
+		</script>
+</body>
+
+</html>

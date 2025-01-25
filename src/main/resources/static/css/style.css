@@ -1,0 +1,911 @@
+html,
+body {
+	height: 100%;
+}
+
+.div-bienvenida {
+	height: 700px;
+	background-image: url(https://html.designingmedia.com/crox/assets/images/home_banner_background.png);
+}
+
+.div-bienvenida a {
+	font-size: 20px;
+	font-weight: 500;
+}
+
+.div-bienvenida li {
+	display: flex;
+}
+
+.body {
+	height: 82%;
+	display: flex;
+}
+
+.redes {
+	height: 91%;
+	width: 100px;
+}
+
+.Mensaje_bienvenida {
+	width: 80%;
+	height: 91%;
+
+}
+
+.Mensaje_bienvenida p {
+	margin: 100px 0 0 200px;
+	color: white;
+	font-size: 120px;
+	font-family: "Teko", serif;
+	;
+	font-weight: 500;
+	width: 600px;
+	line-height: .9;
+}
+
+.Mensaje_bienvenida label {
+	margin-left: 200px;
+	color: white;
+	font-size: 20px;
+	font-weight: 500;
+	width: 600px;
+}
+
+.noticias {
+	background-image: url(https://html.designingmedia.com/crox/assets/images/live_stream_background.jpg);
+	height: 900px;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.titulo_logo {
+	text-align: center;
+	padding-top: 30px;
+}
+
+.titulo_logo h1 {
+	color: white;
+	font-family: "Teko", serif;
+	;
+}
+
+.minilogo {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.line {
+	border: 1px solid white;
+	width: 50px;
+	height: 1px;
+}
+
+.grid_noticias {
+	display: grid;
+	height: 700px;
+	width: 800px;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 1fr .8fr;
+	column-gap: 50px;
+
+
+}
+
+.grid_noticias div {
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	display: flex;
+	align-items: center;
+	text-align: center;
+	color: transparent;
+}
+
+.grid_noticias div:first-child {
+	grid-column: 1/3;
+	background-image: url("/images/noticia1.png");
+
+	font-size: 25px;
+
+}
+
+.grid_noticias div:nth-child(2) {
+	background-image: url("/images/noticia2.png");
+	background-size: contain;
+
+}
+
+.grid_noticias div:last-child {
+	background-image: url("/images/noticia3.png");
+	background-size: contain;
+
+}
+
+.grid_noticias div:hover {
+	background-image: none;
+	color: white;
+	transition: all 1.4s ease;
+}
+
+.div-clasificacion,
+.div-subcategorias {
+	background-image: url(https://html.designingmedia.com/crox/assets/images/upcoming_matches_background.png);
+	background-size: cover;
+	/* Ajusta la imagen para cubrir el elemento */
+	background-position: center;
+	/* Centra la imagen */
+	background-repeat: no-repeat;
+	/* Evita que la imagen se repita */
+	background-color: #17171b;
+	border-bottom: .5px solid #BD0507;
+}
+
+.div-ultimo {
+	background-image: url(https://html.designingmedia.com/crox/assets/images/benefits_background.jpg);
+	height: 700px;
+}
+
+.div-jugadores {
+	background-image: url(https://html.designingmedia.com/crox/assets/images/benefits_background.jpg);
+	min-height: 300px;
+	max-height: 1200px;
+	padding: 15px 10px;
+	font-family: "Teko", serif;
+}
+
+.div-jugadores h1 {
+	color: white;
+
+}
+
+.div-detalle-torneo {
+	background-image: url("/images/fondo-card-torneo.png");
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+	color: white;
+	border-radius: 10px;
+	border: 1px solid white;
+}
+
+div-detalle-club {}
+
+.div-detalle-torneo h6 {
+	color: black;
+}
+
+.div-detalle-torneo p {
+	font-weight: 500;
+	margin-bottom: 5px;
+}
+
+iv-detalle-torneo span {
+	font-weight: 100;
+}
+
+.div-img-detalle-torneo {
+	display: flex;
+
+}
+
+.div-img-detalle-torneo img {
+	margin: auto;
+	border-radius: 50%;
+}
+
+.div-datos-dellate-torneo {
+	padding: 0 20px;
+}
+
+.div-bienvenida-torneo-detalle {
+	height: 733px;
+}
+
+.div-sinjugadores {
+	font-size: 30px;
+	color: white;
+	height: 100px;
+	margin-top: 50px;
+	text-align: center;
+	border: solid #BD0507 2px;
+	padding: 25px;
+}
+
+.card-jugadores {
+	border: solid #BD0507 2px;
+}
+
+.card-torneos {
+	width: 100%;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 80px;
+	font-family: serif;
+	color: white;
+	font-family: "Teko", serif;
+	padding: 0 50px;
+	column-gap: 50px;
+}
+
+.card-torneos h6 {
+	margin: 10px;
+	font-size: 20px;
+}
+
+.card-torneos a {
+	background-color: #BD0507;
+	text-decoration: none;
+	color: white;
+	padding: 5px 10px;
+	border-radius: 5px;
+}
+
+.div-card-torneo {
+	margin-bottom: 50px;
+	padding: 50px;
+	background-color: #18222D;
+	height: 300px;
+	border: 4px solid #1E2A36;
+	border-radius: 15px 40px;
+	display: grid;
+	grid-template-columns: repeat(12, 1fr);
+	grid-template-rows: 100px 25px 100px;
+}
+
+.div-card-torneo span {
+	display: block;
+	font-size: 25px;
+
+}
+
+.card-contend {
+	grid-column: 3/13;
+}
+
+.card-contend span:first-child {
+	font-size: 35px;
+	line-height: 1;
+}
+
+.card-contend2 {
+	grid-column: 3/6;
+	text-align: center;
+
+}
+
+.card-contend2 span:first-child,
+.card-contend3 span:first-child,
+.card-contend4 span:first-child {
+	color: #ADB0AC;
+}
+
+.card-contend2 span:last-child {
+	color: #C5DA42;
+}
+
+.line-torneo {
+	grid-column: 1/13;
+	height: 10px;
+	background-color: #10171F;
+	box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.2),
+		/* Línea superior */
+		0px 1px 3px rgba(255, 255, 255, 0.2);
+	/* Sombra inferior */
+
+}
+
+.card-contend3 {
+	grid-column: 1/3;
+	text-align: center;
+}
+
+.card-contend4 {
+	grid-column: 6/9;
+	text-align: center;
+}
+
+.div-card-torneo a {
+	grid-column: 10/13;
+	height: 50px;
+	background-color: #283849;
+	text-align: center;
+	padding: 12px;
+}
+
+.card-body {
+	text-align: center;
+}
+
+.card-texto {
+	background-color: black;
+	color: red;
+}
+
+.div-titulo-torneo {
+	grid-column: 1/3;
+	text-align: center;
+	font-family: "Teko", serif;
+	;
+	color: white;
+}
+
+.menu {
+	color: white;
+	height: 180px;
+	width: 1000px;
+	display: grid;
+	grid-template-columns: repeat(10, 1fr);
+	text-align: center;
+}
+
+.menu a {
+	place-self: center;
+}
+
+.inicio-sesion {
+	grid-column: 8/11;
+
+}
+
+.inicio-sesion span {
+	width: 100%;
+	text-align: center;
+	place-self: center;
+}
+
+.menu img {
+	grid-column: 5/7;
+	place-self: center;
+}
+
+.titulo {
+	font-weight: 700;
+	color: rgb(141, 49, 35);
+}
+
+li {
+	text-decoration: none;
+}
+
+.nav li a {
+	font-weight: 600;
+	color: white;
+}
+
+.administrador .titulo {
+	font-weight: 700;
+	color: rgb(0, 128, 192);
+}
+
+.administrador ul {
+	background-color: rgb(0, 54, 81);
+}
+
+.usuarios {
+	background-color: rgb(208, 232, 255);
+}
+
+.portada {
+	height: 280px;
+	background-color: rgb(81, 9, 9);
+	color: white;
+	margin-top: 20px;
+	margin-bottom: 40px;
+	align-content: center;
+	text-align: center;
+	border-radius: 10px;
+}
+
+.portada h2 {
+	font-size: 50px;
+	padding-left: 20px;
+	font-weight: 800;
+}
+
+.container-card {
+	display: grid;
+	grid-template-columns: 2fr 1fr;
+	gap: 16px;
+	padding: 0 40px;
+}
+
+.highlight {
+	grid-column: span 2;
+	background: #000;
+	border-radius: 8px;
+	overflow: hidden;
+	height: 180px;
+	display: flex;
+	/* Activa flexbox */
+	flex-direction: column;
+	/* Coloca los elementos en una columna */
+	align-items: center;
+	/* Centra los elementos horizontalmente */
+	justify-content: center;
+	/* Centra los elementos verticalmente */
+
+}
+
+.highlight .title {
+	color: #FFF;
+	font-size: 20px;
+	padding-bottom: 10px;
+	font-weight: 700;
+}
+
+.highlight button {
+	background-color: darkred;
+	border: none;
+	padding: 5px 20px;
+	font-weight: 700;
+}
+
+.container-card .card {
+	background: #1e1e1e;
+	border-radius: 8px;
+	overflow: hidden;
+	position: relative;
+	height: 120px;
+	display: flex;
+	/* Activa Flexbox */
+	flex-direction: column;
+	/* Organiza los hijos en una columna */
+	justify-content: flex-end;
+	/* Lleva el contenido al final (parte inferior) */
+	align-items: center;
+	/* Centra los elementos horizontalmente */
+	height: 200px;
+	/* Define una altura fija para la tarjeta */
+	padding: 16px;
+	/* Añade espacio interno */
+	background-color: #1e1e1e;
+	/* Fondo oscuro para las tarjetas */
+	border-radius: 8px;
+	/* Bordes redondeados */
+	position: relative;
+}
+
+.container-card .card .label {
+	position: absolute;
+	top: 8px;
+	left: 8px;
+	background: red;
+	color: white;
+	padding: 4px 8px;
+	font-size: 12px;
+	border-radius: 4px;
+}
+
+.container-card .card .title {
+	color: #FFF;
+	font-size: 20px;
+	padding-bottom: 10px;
+	font-weight: 600;
+
+}
+
+.container-card .card button {
+	background-color: darkred;
+	border: none;
+	padding: 5px 20px;
+	font-weight: 700;
+
+}
+
+.div-cate {
+	border: none;
+}
+
+.div-cate h2 {
+	font-family: "Irish Grover", serif;
+	color: white;
+	text-align: center;
+}
+
+.div-card {}
+
+.card-torneo,
+.card-cate {
+	padding: 50px 200px;
+
+}
+
+.card-torneo .card {
+	background: transparent;
+	place-self: center;
+
+}
+
+.card-torneo h5 {
+	text-align: center;
+	color: #FFF;
+	font-family: "Teko", serif;
+	;
+	font-size: 35px;
+}
+
+
+.card-text {
+	color: white;
+	font-size: 27px;
+	font-family: "Teko", serif;
+	;
+	text-align: center;
+
+}
+
+.card-cate .card {
+	background: transparent;
+
+}
+
+.div-footer {
+	background-image: url(https://html.designingmedia.com/crox/assets/images/subscribe_background.png);
+	background-size: cover;
+	/* Ajusta la imagen para cubrir el elemento */
+	background-position: center;
+	/* Centra la imagen */
+	background-repeat: no-repeat;
+	/* Evita que la imagen se repita */
+	background-color: black;
+	height: 600px;
+	padding-left: 100px;
+	padding-top: 80px;
+	display: flex;
+}
+
+.mensaje-footer {
+	color: white;
+	font-family: "Teko", serif;
+	;
+	width: 800px;
+	padding: 80px 0 50px 70px;
+
+}
+
+.mensaje-footer span,
+.mensaje-footer label {
+	font-size: 75px;
+	line-height: 1;
+
+
+}
+
+.mensaje-footer label {
+	font-family: "Teko", serif;
+	;
+	color: #BD0507;
+
+}
+
+.robot {
+	background-image: url(https://html.designingmedia.com/crox/assets/images/subscribe_image.png);
+	background-size: cover;
+	/* Ajusta la imagen para cubrir el elemento */
+	background-position: center;
+	/* Centra la imagen */
+	background-repeat: no-repeat;
+	/* Evita que la imagen se repita */
+	height: 520px;
+	width: 400px;
+}
+
+.footer2 {
+	background-color: #BD0507;
+	text-align: center;
+	padding: 20px;
+	color: white;
+
+}
+
+.footer2 h4 {
+	font-size: 16px;
+}
+
+.requisitos {
+	width: 300px;
+	border-radius: 20px;
+	background-color: rgb(128, 128, 128);
+	padding: 10px;
+}
+
+.requisitos h6 {
+	font-weight: 700;
+}
+
+.card {
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+	transform: scale(1.02);
+	box-shadow: 0 6px 15px rgba(0, 0, 0, 0.7);
+}
+
+h2 {
+	font-family: 'Arial', sans-serif;
+	letter-spacing: 1px;
+}
+
+.div-datos-dellate-torneo ul li {
+	color: #ddd;
+}
+
+button.btn-primary {
+	background-color: #007bff;
+	border: none;
+	font-size: 1rem;
+	padding: 10px;
+	border-radius: 5px;
+	transition: background 0.3s;
+}
+
+button.btn-primary:hover {
+	background-color: #0056b3;
+}
+
+.card-club {
+	border: #BD0507 2px solid;
+
+}
+
+.titulo-clubes {
+	color: white;
+	font-family: "Teko", serif;
+}
+
+.a-clubes {
+	text-decoration: none;
+}
+
+.card-body-club {
+	background-color: black;
+	color: white;
+	font-family: "Teko", serif;
+
+}
+
+.card-body-club h5 {
+	font-size: 30px;
+
+}
+
+.body-clubes {
+	height: 500px;
+}
+
+.div-overflow-tabla {
+	max-height: 635px;
+	overflow: auto;
+	padding: 0 50px;
+}
+
+.div-tabla-clasificacion {
+	width: 65%;
+}
+
+.tabla-clasificacion {
+	border-collapse: separate;
+	width: 100%;
+	color: white;
+	border-spacing: 0 20px;
+
+
+}
+
+.tabla-clasificacion tbody tr {
+	background-color: #111114;
+}
+
+.tabla-clasificacion tbody tr td {
+	background-color: #111114;
+	height: 100px;
+
+}
+.div-clasificacion-body{
+	height: max-content;
+}
+.tabla-clasificacion tbody tr td:nth-child(4),
+.tabla-clasificacion tbody tr td:nth-child(5) {
+	width: 220px;
+	text-align: center;
+	font-family: "Teko", serif;
+	font-size: 21px;
+	line-height: 1.2;
+}
+
+.tabla-clasificacion tbody tr td:nth-child(6) {
+	width: 60px;
+}
+
+.tabla-clasificacion tbody tr td:nth-child(1) {
+	width: 150px;
+}
+
+.tabla-clasificacion tbody tr td:nth-child(3) {
+	font-family: "Teko", serif;
+	font-size: 30px;
+}
+
+.div-cate-victorias {
+	width: 185px;
+	height: 60px;
+	background-color: #BD0507;
+	padding-top: 5px;
+	border-radius: 5px;
+}
+
+.div-cate-victorias span {
+	display: block;
+	text-align: center;
+}
+
+.logo-clasificacion {
+	width: 55px;
+	height: 60px;
+	margin: 0 15px;
+}
+
+.titulo-clasificacion {
+	font-family: "Teko", serif;
+	font-size: 50px;
+	color: white;
+
+}
+.div-padre-comunidad {
+	min-height: 782px;
+	height: max-content;
+	padding-bottom: 50px;
+}
+
+.body-comunidad {
+	height: min-content;
+	border: 1px solid gray;
+	border-radius: 5px;
+	width: 60%;
+	padding: 0;
+	
+}
+.body-comunidad-hijo{
+	width: 100%;
+}
+
+.titulo-filtro{
+	display: flex;
+	padding: 20px;
+	color: white;
+	border-bottom: 1px solid gray;
+}
+.titulo-filtro h2{
+
+	font-family: "Teko", serif;
+	font-size: 40px;
+}
+.form-filtro{
+	display: flex;
+	margin-left: 10%;
+}
+
+.form-filtro select{
+	border: none;
+	border-top: #BD0507 2px solid;
+	border-left: #BD0507 2px solid;
+	border-bottom: #BD0507 2px solid;
+	background-color: transparent;
+	color: white;
+	font-size: 20px;
+	padding: 7.5px ;
+}
+.form-filtro select option{
+	color: #000;
+}
+.form-filtro button{
+	padding: 0;
+	border: #BD0507 2px solid;
+	background-color: transparent;
+	color: white;
+	padding: 7.5px ;
+}
+.div-comentarios{
+	color: white;
+	font-family: "Teko", serif;
+	
+}
+.tabla-comunidad {
+	border-collapse: separate;
+	border-spacing: 0 25px;
+	width: 100%;
+}
+.tabla-comunidad tbody td:first-child{
+	width: 500px;
+}
+.tabla-comunidad tbody td:last-child{
+	text-align: center;
+}
+.info-comentario{
+	padding: 0 20px;
+	height: 150px;
+	
+}
+.info-comentario span {
+	font-family: "Teko", serif;
+	display: block;
+	color: white;
+
+}
+
+.info-comentario span:first-child {
+	font-size: 30px;
+}
+
+.info-comentario span:nth-child(2) {
+	font-size: 20px;
+	color: orangered;
+}
+.agregar-comentario{
+	text-decoration: none;
+	padding: 7.5px 10px;
+	margin-left: 20px;
+	color: white;
+	border: 1px solid #BD0507;
+	
+}
+
+/*estilos paginacion (comunidad, talvez otros)*/
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 20px 0;
+}
+
+.pagination .page-item {
+  list-style: none;
+}
+
+.pagination .page-item .page-link {
+  background-color: #111114; /* Fondo oscuro */
+  color: white; /* Texto blanco */
+  border: 2px solid #BD0507; /* Borde rojo */
+  border-radius: 5px; /* Bordes redondeados */
+  padding: 10px 15px; /* Tamaño del botón */
+  font-size: 16px;
+  font-family: "Teko", serif; /* Tipografía consistente */
+  text-decoration: none; /* Sin subrayado */
+  transition: all 0.3s ease; /* Transición suave */
+  cursor: pointer;
+}
+
+.pagination .page-link:focus {
+  outline: none; /* Eliminar el contorno de enfoque */
+  box-shadow: none; /* Eliminar cualquier sombra que pueda aparecer */
+}
+
+/* Botones en estado 'hover' */
+.pagination .page-item .page-link:hover {
+  background-color: #BD0507; /* Fondo rojo al pasar el ratón */
+  color: white; /* Texto blanco */
+  transform: scale(1.1); /* Aumentar tamaño */
+}
+
+/* Botón activo */
+.pagination .page-item.active .page-link {
+  background-color: #BD0507; /* Fondo rojo */
+  color: white; /* Texto blanco */
+  cursor: default; /* Cursor desactivado */
+}
+
+/* Botón deshabilitado */
+.pagination .page-item.disabled .page-link {
+  background-color: #444; /* Fondo gris oscuro */
+  color: #888; /* Texto gris */
+  border-color: #666; /* Borde gris */
+  cursor: not-allowed; /* Cursor de no permitido */
+  pointer-events: none; /* Sin eventos */
+}

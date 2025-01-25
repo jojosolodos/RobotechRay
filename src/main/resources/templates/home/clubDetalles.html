@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>ROBOTECH - Clubes Información</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+	<div class="div-bienvenida div-bienvenida-torneo-detalle">
+		<div class="menu container">
+			<a class="nav-link" th:href="@{/home}">Inicio</a>
+			<a class="nav-link" th:href="@{/home/torneos}">Torneos</a>
+			<a class="nav-link" th:href="@{/home/clubes}" style="border-bottom: 2px solid #BD0507;">Clubes</a>
+			<a class="nav-link" th:href="@{/home/clasificacion}">Clasificación</a>
+			<img src="/images/logo_robotech.png" width="150px" height="150px">
+			<a class="nav-link" th:href="@{/home/comunidad}">Comunidad</a>
+			<li class="inicio-sesion">
+				<span th:if="${session.usuario == null}">
+					<a id="loginLink" class="nav-link" th:href="@{/login}">Iniciar Sesión</a>
+				</span>
+				<span th:unless="${session.usuario == null}" class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+						aria-expanded="false">
+						<span th:text="'Hola, ' + ${session.usuario.username}" style="text-decoration: none;"></span>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+							<a th:href="@{/home/perfil}" class="dropdown-item">Ver perfil</a>
+						</li>
+						<li>
+							<form th:action="@{/logout}" method="post">
+								<button class="dropdown-item">Cerrar Sesión</button>
+							</form>
+						</li>
+
+					</ul>
+				</span>
+			</li>
+		</div>
+		<div class="container py-3">
+			<div class="row py-5">
+				<div class="card prod-id mb-3 mx-auto p-3 div-detalle-club div-detalle-torneo "
+					style="max-width: 723px; height: 407px; border-radius: 10px; ">
+					<div class="row g-0" style="height: 100%;">
+						<!-- Imagen -->
+						<div class="col-md-4 div-img-detalle-torneo d-flex align-items-center justify-content-center">
+							<img th:src="@{'/images/'}+${clubDet.img}" class="" alt="..." width="200px" height="200px"
+								style="border-radius: 50%; object-fit: cover;">
+						</div>
+						<!-- Datos -->
+						<div class="col-md-8 div-datos-dellate-torneo p-4">
+							<div class="d-flex justify-content-between align-items-center mb-3">
+								<h2 th:text="${clubDet.nombre}" style="font-size: 1.8rem; font-weight: 700; margin: 0;">
+								</h2>
+
+							</div>
+							<p th:text="${clubDet.descripcion}"
+								style="font-size: 1rem; color: #aaa; margin-bottom: 1rem;"></p>
+							<ul style="list-style: none; padding: 0; font-size: 0.95rem; line-height: 1.6;">
+								<li>Dueño del Club <strong style="margin-left: 3px;"
+										th:text="${clubDet.usuarioId.nombre}"></strong></li>
+							</ul>
+							<p>Cantidad de Usuarios en el Club: <strong th:text="${cantidadUsuarios}"></strong></p>
+							<p>Cantidad de Victorias del Club: <strong th:text="${cantidadVictorias}"></strong></p>
+							<p style="font-weight: 700; margin-top: 1rem;">¿Deseas pertenecer a nuestra comunidad?
+							</p>
+							<div class="requisitos">
+
+								<!-- Mostrar mensaje de cuenta, si aplica -->
+								<div th:if="${mensajeCuenta != null}">
+									<p class="text-danger" th:text="${mensajeCuenta}"></p>
+								</div>
+								<div th:if="${mensajeMembresia != null}">
+									<p class="text-danger" th:text="${mensajeMembresia}"></p>
+								</div>
+
+								<div th:if="${mensajeSolicitudRevision != null}">
+									<p class="text-danger" th:text="${mensajeSolicitudRevision}"></p>
+								</div>
+
+								<!-- Mensaje de solicitud en espera -->
+								<div th:if="${mensajeSolicitudEnEspera}">
+									<p th:text="${mensajeSolicitudEnEspera}" class="text-warning"></p>
+								</div>
+
+								<!-- Mostrar el mensaje de estado del usuario si no está aprobado -->
+								<div th:if="${mensajeEstadoUsuario != null}">
+									<p class="text-danger" th:text="${mensajeEstadoUsuario}"></p>
+								</div>
+
+								<!-- Mostrar el botón de inscripción solo si el estado del usuario es aprobado y no pertenece a un club -->
+								<div th:if="${mostrarBotonInscripcion}">
+									<form th:action="@{/home/clubes/{id}/inscribirse(id=${clubDet.id})}" method="post">
+										<button type="submit" class="btn btn-primary">Solicitar Inscripción</button>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<div class="div-jugadores">
+			<h1 class="text-center py-3">Nuestros Jugadores</h1>
+			<div class="row row-cols-1 row-cols-md-4 g-4" th:if="${jugadoresActivos != null}">
+				<div class="card-group" th:each="jugador : ${jugadoresActivos}">
+					<div class="card card-jugadores">
+						<img th:src="@{'/images/'} + ${jugador.usuarioId.foto_robot}" width="354px" height="350px"
+							alt="...">
+						<div class="card-body card-texto">
+							<h5 class="card-title" th:text="${jugador.usuarioId.nombre}"></h5>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Mostrar el mensaje si la lista está vacía -->
+			<div th:if="${jugadoresActivos == null or jugadoresActivos.isEmpty()}" class="div-sinjugadores container"
+				role="alert">
+				No hay jugadores inscritos.
+			</div>
+
+			<!-- Controles de paginación -->
+			<div class="pagination">
+				<nav th:if="${totalPages > 1}">
+					<ul class="pagination justify-content-center">
+						<!-- Botón para ir a la página anterior -->
+						<li class="page-item" th:classappend="${currentPage == 0} ? 'disabled'">
+							<a class="page-link"
+								th:href="@{/home/clubes/{id}(id=${clubDet.id}, page=${currentPage - 1}, size=${size})}">
+								&laquo; Anterior
+							</a>
+						</li>
+
+						<!-- Botones de número de página -->
+						<li class="page-item" th:each="i : ${#numbers.sequence(0, totalPages - 1)}"
+							th:classappend="${i == currentPage} ? 'active'">
+							<a class="page-link"
+								th:href="@{/home/clubes/{id}(id=${clubDet.id}, page=${i}, size=${size})}"
+								th:text="${i + 1}">
+							</a>
+						</li>
+
+						<!-- Botón para ir a la página siguiente -->
+						<li class="page-item" th:classappend="${currentPage + 1 == totalPages} ? 'disabled'">
+							<a class="page-link"
+								th:href="@{/home/clubes/{id}(id=${clubDet.id}, page=${currentPage + 1}, size=${size})}">
+								Siguiente &raquo;
+							</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+			crossorigin="anonymous"></script>
+		<!-- Script para el boton de inicio de sesion-->
+		<script>
+			// Selecciona el elemento <a> usando su ID o clase
+			const loginLink = document.getElementById("loginLink");
+
+			// Verifica si el elemento <a> contiene un <span> dentro
+			if (loginLink.querySelector("span")) {
+				// Si hay un <span>, elimina todos los estilos del enlace
+				loginLink.style.backgroundColor = "";
+				loginLink.style.padding = "";
+				loginLink.style.borderRadius = "";
+				loginLink.style.color = "";
+				loginLink.style.textDecoration = "";
+			} else {
+				// Si no hay <span>, aplica los estilos
+				loginLink.style.backgroundColor = "#BD0507";
+				loginLink.style.padding = "10px 15px";
+				loginLink.style.borderRadius = "5px";
+				loginLink.style.color = "white"; // Asegura que el texto sea legible
+				loginLink.style.textDecoration = "none"; // Quita el subrayado
+			}
+		</script>
+</body>
+
+</html>
